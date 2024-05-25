@@ -1,13 +1,41 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Express</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
-
 <body>
-  <h1>Express</h1>
-  <p>Welcome to Express</p>
-</body>
+<button id="showdata">顯示資料</button>
+<table id="data">
+    <tr>
+        <th>id</th>
+        <th>provider</th>
+        <th>movie_name</th>
+        <th>quote</th>
+        <th>vote_count</th>
+    </tr>
+</table>
 
+
+<script>
+    document.getElementById('showdata').addEventListener('click', async () => {
+        const response = await fetch('/api/quotes');
+        const data = await response.json();
+        const table = document.getElementById('data');
+        data.forEach((item) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.id}</td>
+                <td>${item.provider}</td>
+                <td>${item.movie_name}</td>
+                <td>${item.quote}</td>
+                <td>${item.vote_count}</td>
+            `;
+            table.appendChild(row);
+        });
+    });
+
+</script>
+
+</body>
 </html>

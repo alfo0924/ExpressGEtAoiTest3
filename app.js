@@ -101,7 +101,8 @@ app.post('/api/insert', (req, res) => {
 });
 
 
-
+const cors = require("cors");
+app.use(cors());
 
 
 
